@@ -3,5 +3,5 @@ build/
 *.class
 *.tmp
 .setting/
-.project/
+.project
 .classpath

@@ -59,26 +59,29 @@ public class ConverterUI extends JFrame {
 	}
 	class ConvertButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt) {
-			String s;
-			if (isLeftToRight)
-			s = inputField1.getText().trim();
-			else
-				s = inputField2.getText().trim();	
-			if (s.length() > 0) {
-				try {
-					double value = Double.valueOf(s);
-					if (isLeftToRight) {
-						double result = unitconverter.convert(value, (Length)unitBox1.getSelectedItem(), (Length)unitBox2.getSelectedItem());
-						inputField2.setText(result+"");
-					} else {
-						double result = unitconverter.convert(value, (Length)unitBox2.getSelectedItem(),  (Length)unitBox1.getSelectedItem());
-						inputField1.setText(result+"");
-					}
-				} catch (NumberFormatException e) {
-					e.printStackTrace();
+			convert();
+		}
+	}
+	private void convert() {
+		String s;
+		if (isLeftToRight)
+		s = inputField1.getText().trim();
+		else
+			s = inputField2.getText().trim();	
+		if (s.length() > 0) {
+			try {
+				double value = Double.valueOf(s);
+				if (isLeftToRight) {
+					double result = unitconverter.convert(value, (Length)unitBox1.getSelectedItem(), (Length)unitBox2.getSelectedItem());
+					inputField2.setText(result+"");
+				} else {
+					double result = unitconverter.convert(value, (Length)unitBox2.getSelectedItem(),  (Length)unitBox1.getSelectedItem());
+					inputField1.setText(result+"");
 				}
-				
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
 			}
+			
 		}
 	}
 	class ClearButtonListener implements ActionListener {
@@ -89,6 +92,7 @@ public class ConverterUI extends JFrame {
 	}
 	class LeftRightListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt) {
+			convert();
 			isLeftToRight = true;
 			inputField1.setEditable(true);
 			inputField2.setEditable(false);
@@ -96,6 +100,7 @@ public class ConverterUI extends JFrame {
 	}
 	class RightLeftListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt) {
+			convert();
 			isLeftToRight = false;
 			inputField1.setEditable(false);
 			inputField2.setEditable(true);

@@ -1,5 +1,5 @@
 
-public enum Length {
+public enum Length implements Unit{
 	METER("Meter", 1.00),
 	KILOMETER("Kilometer", 1000.0),
 	MILE("Mile", 1609.344),
